@@ -79,7 +79,7 @@ const App = () => {
       </div>
 
         <button onClick={ClickHandler}>Start</button>
-        <button onClick={EndHandler}>End</button>
+        {/* <button onClick={EndHandler}>End</button> */}
       </div>
 
     </>
