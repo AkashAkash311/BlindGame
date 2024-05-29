@@ -70,7 +70,7 @@ const App = () => {
         Score: {highscore}
         </div>
         <div>
-        HighScore: {localStorage.getItem("highscores")|| 0}
+        HighScore: {localStorage.getItem("highscore")|| 0}
         </div>
       </div>
       <div className=' w-full h-28 border-2 border-solid flex'>
