@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 const Blocks = 5;
 
 const App = () => {
 
-  let interval;
+  let interval = useRef(null);
   // const[score,Setscore] = useState(0);
   const[highscore,Sethighscore] = useState(0);
   const[reqBlock, SetreqBlock] = useState((Math.random()*10) % Blocks);
@@ -42,22 +42,28 @@ const App = () => {
     }
   }
 
-  useEffect(() => {
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
+  // useEffect(() => {
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
+  
   function ClickHandler(){
-    interval = setInterval(() => {
+    interval.current = setInterval(() => {
       const random = parseInt((Math.random() * 10) % Blocks);
       SetreqBlock(random);
       Setsuccess(null);
       Setfaliure(null);
+      console.log(random);
     }, 1000);
   }
 
   function EndHandler(){
+    // console.log(interval.current);
+    clearInterval(interval.current);
+    // console.log(interval);
+    interval.current = null
+    // alert("Game Over");
 
   }
 
@@ -79,7 +85,7 @@ const App = () => {
       </div>
 
         <button onClick={ClickHandler}>Start</button>
-        {/* <button onClick={EndHandler}>End</button> */}
+        <button onClick={EndHandler}>End</button>
       </div>
 
     </>
